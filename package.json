@@ -1,0 +1,22 @@
+{
+  "name": "browser-jit-generate-tailwindcss",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "postcss": "^8.1.6",
+    "tailwindcss": "^3.0.23"
+  },
+  "devDependencies": {
+    "esbuild-loader": "^2.18.0",
+    "simple-functional-loader": "^1.2.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
