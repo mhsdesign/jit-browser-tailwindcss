@@ -7,7 +7,7 @@ const moduleOverrides = {
 };
 
 const nullExternals = {
-    resolve: 'window.resolve',
+    // resolve: 'window.resolve',
     chokidar: 'window.chokidar',
     purgecss: 'window.purgecss',
     tmp: 'window.tmp',
@@ -24,6 +24,7 @@ module.exports = {
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'umd'
     },
     resolve: {
         alias: moduleOverrides

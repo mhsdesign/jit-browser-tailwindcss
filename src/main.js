@@ -1,3 +1,6 @@
 import browserJitGenerateTailwindcss from "./browserJitGenerateTailwindcss";
+if (typeof window !== 'undefined') {
+  window.browserJitGenerateTailwindcss = browserJitGenerateTailwindcss;
+}
 
-window.browserJitGenerateTailwindcss = browserJitGenerateTailwindcss;
+export default browserJitGenerateTailwindcss;
