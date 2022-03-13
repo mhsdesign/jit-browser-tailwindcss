@@ -12,3 +12,6 @@ insert_final_newline = true
 # Markdown uses trailing whitespace for line breaks
 [*.md]
 trim_trailing_whitespace = false
+
+[package.json]
+indent_size = 2
