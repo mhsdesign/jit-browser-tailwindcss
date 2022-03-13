@@ -7,7 +7,6 @@ const moduleOverrides = {
 };
 
 const nullExternals = {
-    // resolve: 'window.resolve',
     chokidar: 'window.chokidar',
     purgecss: 'window.purgecss',
     tmp: 'window.tmp',

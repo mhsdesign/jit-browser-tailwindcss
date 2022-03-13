@@ -19,4 +19,4 @@ browserJitGenerateTailwindcss(/** @type string */ tailwindMainCss, /** @type str
 
 see demo file
 
-the bundle size is minified around 467 KiB
+the bundle size is minified around 489 KiB
