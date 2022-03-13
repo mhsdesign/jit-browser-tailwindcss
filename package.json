@@ -1,5 +1,6 @@
 {
-  "name": "browser-jit-generate-tailwindcss",
+  "name": "@mhsdesign/jit-browser-tailwindcss",
+  "description": "Generate tailwindcss in your browser client side!",
   "version": "0.1.0-beta.0",
   "main": "dist/main.js",
   "license": "MIT",
