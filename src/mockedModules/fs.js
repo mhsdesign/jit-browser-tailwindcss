@@ -4,8 +4,8 @@ let i = 0
 window._browserTailwindJit_VirtualFS = window._browserTailwindJit_VirtualFS || {}
 
 module.exports = {
-  // fake mock stat
-  statSync: () => ({ mtimeMs: ++i }),
-  readFileSync: fileName => window._browserTailwindJit_VirtualFS[fileName],
-  writeFileSync: (fileName, contents) => window._browserTailwindJit_VirtualFS[fileName] = contents
+    // fake mock stat
+    statSync: () => ({ mtimeMs: ++i }),
+    readFileSync: fileName => window._browserTailwindJit_VirtualFS[fileName],
+    writeFileSync: (fileName, contents) => window._browserTailwindJit_VirtualFS[fileName] = contents
 }

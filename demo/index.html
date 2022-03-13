@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Demo Dynamic Tailwind</title>
     <style id="tailwind"></style>
-    <script src="../dist/main.js"></script>
+<!--    <script src="../dist/main.js"></script>-->
 </head>
 <body>
 
@@ -33,9 +33,16 @@
         const init = async () => {
 
             const contentElements = document.querySelectorAll(`[data-dynamic-tailwind-css]`)
+
+            if (!contentElements) {
+                return
+            }
+
+            await import('../dist/main.js')
+
             const content = Array.from(contentElements).reduce((carry, el) => carry + el.outerHTML, '')
 
-            const css = await browserJitGenerateTailwindcss(`
+            const css = await window.browserJitGenerateTailwindcss(`
                 @tailwind components;
                 @tailwind utilities;
             `, content)
