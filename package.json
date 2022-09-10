@@ -1,0 +1,51 @@
+{
+  "name": "jit-browser-tailwindcss",
+  "version": "0.2.0",
+  "description": "Jit Browser Tailwindcss",
+  "files": [
+    "index.js",
+    "index.js.map",
+    "index.d.ts",
+    "tailwindcss.worker.js",
+    "tailwindcss.worker.js.map",
+    "tailwindcss.worker.d.ts",
+    "preflight.css"
+  ],
+  "type": "module",
+  "scripts": {
+    "prepack": "node build.js",
+    "start": "npm --workspace esbuild-demo start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhsdesign/jit-browser-tailwindcss.git"
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss"
+  ],
+  "author": "Remco Haszing <remcohaszing@gmail.com> & Marc Henry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mhsdesign/jit-browser-tailwindcss/issues"
+  },
+  "dependencies": {
+    "color-name": "^1.0.0",
+    "dlv": "^1.0.0",
+    "didyoumean": "^1.0.0",
+    "postcss": "^8.0.0",
+    "postcss-js": "^4.0.0",
+    "postcss-nested": "^5.0.0",
+    "postcss-selector-parser": "^6.0.0",
+    "postcss-value-parser": "^4.0.0",
+    "quick-lru": "^5.0.0",
+    "tailwindcss": "^3.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "esbuild": "^0.14.0",
+    "eslint": "^8.0.0",
+    "eslint-config-remcohaszing": "^6.0.0",
+    "prettier": "^2.0.0"
+  }
+}
