@@ -4,24 +4,23 @@ let tailwindcss = createTailwindcss();
 
 self.onmessage = async (e) => {
     const { id, type, payload } = e.data;
+
+    const postMessage = (payload?: any) => {
+        self.postMessage({
+            id,
+            payload
+        });
+    }
+
     switch (type) {
         case "setTailwindConfig":
             tailwindcss.setTailwindConfig(payload.tailwindConfig)
-
-            self.postMessage({
-                id
-            });
-            
+            postMessage()
             break;
 
         case "generateStylesFromContent":
             const css = await tailwindcss.generateStylesFromContent(payload.css, payload.content)
-
-            self.postMessage({
-                id,
-                payload: css
-            });
-            
+            postMessage(css)
             break;
     
         default:
