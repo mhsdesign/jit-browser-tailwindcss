@@ -1,25 +1,14 @@
 import { readdir, readFile } from 'fs/promises';
 import { parse, sep } from 'path';
 import { fileURLToPath } from 'url';
-
 import { build } from 'esbuild';
 
-const [, , logLevel = 'info'] = process.argv;
 const pkg = JSON.parse(await readFile(new URL('package.json', import.meta.url)));
 
-await build({
-  entryPoints: ['src/index.ts', 'src/tailwindcss.worker.ts'],
-  bundle: true,
-  external: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
-    // We only want to include tailwindcss as an external dependency for its types.
-    (name) => name !== 'tailwindcss',
-  ),
-  logLevel,
-  outdir: '.',
-  sourcemap: true,
-  format: 'esm',
-  loader: { '.css': 'copy' },
-  assetNames: '[name]',
+/**
+ * @type {import("esbuild").BuildOptions}
+ */
+ const sharedConfig = {
   define: {
     'process.env.DEBUG': 'undefined',
     'process.env.JEST_WORKER_ID': '1',
@@ -69,6 +58,16 @@ await build({
           resolve(`${path}.js`, options),
         );
 
+        // minify and include the preflight.css in the javascript
+        onLoad({ filter: /preflight.css$/ }, async ({ path }) => {
+          const result = await build({
+            entryPoints: [path],
+            minify: true,
+            write: false
+          })
+          return { contents: result.outputFiles[0].text, loader: "text" };
+        });
+
         // None of our dependencies use side effects, but many packages don’t explicitly define
         // this.
         // currently no effect, disabled for faster build.
@@ -88,4 +87,30 @@ await build({
       },
     },
   ],
+}
+
+build({
+  entryPoints: ['src/index.ts'],
+  bundle: true,
+  external: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
+    // We only want to include tailwindcss as an external dependency for its types.
+    (name) => name !== 'tailwindcss',
+  ),
+  logLevel: 'info',
+  outdir: '.',
+  sourcemap: true,
+  format: 'esm',
+  // loader: { '.css': 'copy' },
+  // assetNames: '[name]',
+  ...sharedConfig
+});
+
+build({
+  entryPoints: {'dist/index.min': 'src/index.iife.js'},
+  bundle: true,
+  minify: true,
+  logLevel: 'info',
+  outdir: '.',
+  format: 'iife',
+  ...sharedConfig
 });

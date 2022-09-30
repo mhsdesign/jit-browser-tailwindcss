@@ -2,14 +2,14 @@
   "name": "jit-browser-tailwindcss",
   "version": "0.2.0",
   "description": "Jit Browser Tailwindcss",
+  "workspaces": ["examples/*"],
+  "main": "dist/index.min.js",
+  "module": "index.js",
   "files": [
     "index.js",
     "index.js.map",
     "index.d.ts",
-    "tailwindcss.worker.js",
-    "tailwindcss.worker.js.map",
-    "tailwindcss.worker.d.ts",
-    "preflight.css"
+    "dist/index.min.js"
   ],
   "type": "module",
   "scripts": {
@@ -24,7 +24,7 @@
     "tailwind",
     "tailwindcss"
   ],
-  "author": "Remco Haszing <remcohaszing@gmail.com> & Marc Henry",
+  "author": "Marc Henry Schultz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mhsdesign/jit-browser-tailwindcss/issues"
@@ -42,10 +42,6 @@
     "tailwindcss": "^3.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "esbuild": "^0.14.0",
-    "eslint": "^8.0.0",
-    "eslint-config-remcohaszing": "^6.0.0",
-    "prettier": "^2.0.0"
+    "esbuild": "^0.15.0"
   }
 }

@@ -1,9 +1,9 @@
+import { AcceptedPlugin } from 'postcss';
 import { TailwindConfig } from 'tailwindcss/tailwindconfig.faketype';
 
 /**
  * The entry point to retrieve 'tailwindcss'
  *
- * @param tailwindWorkerFactory a closure to return the tailwindcss.worker.js web worker.
  * @param options {@link TailwindcssOptions}
  * @example
  * const tailwindConfig: TailwindConfig = {
@@ -15,22 +15,17 @@ import { TailwindConfig } from 'tailwindcss/tailwindconfig.faketype';
  *     },
  *   },
  * };
- * const workerFactory = () => new Worker(new URL('tailwindcss.worker.js', import.meta.url).pathname);
- * const tailwindCss = tailwindcssFactory(workerFactory, { tailwindConfig });
+ * const tailwindCss = tailwindcssFactory({ tailwindConfig });
  */
-export function tailwindcssFactory(
-  tailwindWorkerFactory: () => Worker,
+export function createTailwindcss(
   options?: TailwindcssOptions,
 ): Tailwindcss;
 
 export interface TailwindcssOptions {
   /**
    * The tailwind configuration to use.
-   *
-   * This may be either the Tailwind configuration object, or a string that gets processed in the
-   * worker.
    */
-  tailwindConfig?: TailwindConfig | string;
+  tailwindConfig?: TailwindConfig;
 }
 
 export interface Tailwindcss {
@@ -39,13 +34,13 @@ export interface Tailwindcss {
    *
    * @param tailwindConfig The new Tailwind configuration.
    */
-  setTailwindConfig: (tailwindConfig: TailwindConfig | string) => void;
+  setTailwindConfig: (tailwindConfig: TailwindConfig) => void;
 
   /**
    * Generate styles using Tailwindcss.
    *
    * This generates CSS using the Tailwind JIT compiler. It uses the Tailwind configuration that has
-   * previously been passed to {@link tailwindcssFactory}.
+   * previously been passed to {@link createTailwindcss}.
    *
    * @param css The CSS to process. Only one CSS file can be processed at a time.
    * @param content All content that contains CSS classes to extract.
@@ -58,8 +53,28 @@ export interface Tailwindcss {
    * )
    */
   generateStylesFromContent: (css: string, content: (Content | string)[]) => Promise<string>;
+}
 
-  dispose: () => void;
+/**
+ * Lower level API to create a PostCSS Tailwindcss Plugin
+ * @internal might change in the future
+ * @example
+ * const processor = postcss([createTailwindcssPlugin({ tailwindConfig, content })]);
+ * const { css } = await processor.process(css, { from: undefined });
+ */
+export function createTailwindcssPlugin(
+  options: TailwindCssPluginOptions
+): AcceptedPlugin;
+
+export interface TailwindCssPluginOptions {
+  /**
+   * The tailwind configuration to use.
+   */
+  tailwindConfig?: TailwindConfig;
+  /**
+   * All content that contains CSS classes to extract.
+   */
+   content: (Content | string)[];
 }
 
 /**
@@ -73,3 +88,14 @@ export interface Content {
 }
 
 export { TailwindConfig };
+
+/**
+ * Client side api to generate css via tailwind jit in the browser
+ * 
+ * @deprecated with 0.2.0
+ */
+declare function jitBrowserTailwindcss(tailwindMainCss: string, jitContent: string, userTailwindConfig?: TailwindConfig): Promise<string>;
+
+export { jitBrowserTailwindcss };
+
+export default jitBrowserTailwindcss;
