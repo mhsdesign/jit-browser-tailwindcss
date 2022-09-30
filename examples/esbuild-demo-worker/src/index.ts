@@ -1,10 +1,9 @@
 import { TailwindConfig, Tailwindcss } from 'jit-browser-tailwindcss';
-import { createMessenger, fromWorkerMessageEvent } from './observeableWorker';
+import { createMessenger } from './observeableWorker';
 
 const worker = new Worker(new URL('tailwindcss.worker.js', import.meta.url).pathname);
 
-const worker$ = fromWorkerMessageEvent(worker)
-const postMessage = createMessenger(worker, worker$)
+const postMessage = createMessenger(worker)
 
 const tailwindcss: Tailwindcss = {
   async setTailwindConfig(tailwindConfig) {

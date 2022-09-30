@@ -1,36 +1,24 @@
-type WorkerMessageObserver = {
-    subscribe(listerner: (e: MessageEvent) => void): void;
-    unsubscribe(listerner: (e: MessageEvent) => void): void;
-}
 
-export const fromWorkerMessageEvent = (worker: Worker): WorkerMessageObserver => {
-    const subscribers = new Set<((e: MessageEvent) => void)>()
-    worker.addEventListener('message', (e) => subscribers.forEach(subscriber => subscriber(e)))
-    return {
-        subscribe: subscribers.add.bind(subscribers),
-        unsubscribe: subscribers.delete.bind(subscribers),
-    }
-}
+let messageCount = 0;
 
-export const createMessenger = (worker: Worker, worker$: WorkerMessageObserver) => {
-    let messageCount = 0;
+export const createMessenger = (worker: Worker) => {
     return (type: string, payload: any): Promise<any> => {
         const id = messageCount++;
-        const result = new Promise((resolve) => {
+        const responseFromWorker = new Promise((resolve) => {
             const listener = (e: MessageEvent) => {
                 if (e.data.id !== id) {
                     return;
                 }
-                worker$.unsubscribe(listener)
+                worker.removeEventListener("message", listener)
                 resolve(e.data.payload)
             }
-            worker$.subscribe(listener)
+            worker.addEventListener("message", listener)
         })
         worker.postMessage({
             id,
             type,
             payload
         });
-        return result;
+        return responseFromWorker;
     }
 }
