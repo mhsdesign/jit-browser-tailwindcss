@@ -1,0 +1,14 @@
+{
+  "name": "esbuild-demo-worker",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "rm -rf ./dist && node build.js"
+  },
+  "dependencies": {
+    "jit-browser-tailwindcss": "file:../..",
+    "esbuild": "^0.15.0",
+    "rxjs": "^7.5.0"
+  }
+}

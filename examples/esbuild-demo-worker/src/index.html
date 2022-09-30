@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Demo Dynamic Tailwind</title>
+    <style id="tailwind"></style>
+    <script defer src="./index.js" type="module"></script>
+  </head>
+  <body>
+    <div data-dynamic-tailwind-css class="bg-marcherry line-clamp-6">
+      <div
+        class="bg-[#eee] max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between"
+      >
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          <span class="block">Demo Dynamic Tailwind</span>
+          <span class="block text-red-600">Render Tailwind in the Browser</span>
+        </h2>
+        <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+          <div class="inline-flex">
+            <a
+              href="https://github.com/mhsdesign/browser-jit-generate-tailwindcss"
+              class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium text-white bg-red-600 hover:bg-red-700"
+              >Github</a
+            >
+          </div>
+          <div class="ml-3 inline-flex">
+            <a
+              href="https://github.com/mhsdesign/"
+              class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium text-red-600 bg-white hover:bg-red-50"
+              >Me on Github</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="bg-blue-500">
+      I have to Tailwind class generated.
+      <span data-dynamic-tailwind-css class="text-red-500">But me</span>
+    </p>
+    <p>Normalize.css is not Included.</p>
+  </body>
+</html>
