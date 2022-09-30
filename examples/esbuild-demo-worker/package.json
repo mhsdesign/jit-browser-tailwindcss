@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "jit-browser-tailwindcss": "file:../..",
-    "esbuild": "^0.15.0",
-    "rxjs": "^7.5.0"
+    "esbuild": "^0.15.0"
   }
 }

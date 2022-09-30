@@ -1,27 +1,10 @@
 import { TailwindConfig, Tailwindcss } from 'jit-browser-tailwindcss';
-import { fromEvent, lastValueFrom, map, filter, take } from "rxjs";
+import { createMessenger, fromWorkerMessageEvent } from './observeableWorker';
 
 const worker = new Worker(new URL('tailwindcss.worker.js', import.meta.url).pathname);
 
-const worker$ = fromEvent<MessageEvent>(worker, "message")
-
-let messageCount = 0;
-
-const postMessage = (type: string, payload: any): Promise<any> => {
-  const id = messageCount++;
-  const result$ = worker$.pipe(
-    filter(msg => msg.data.id === id),
-    map(msg => msg.data.payload),
-    take(1)
-  )
-  const result = lastValueFrom(result$)
-  worker.postMessage({
-    id,
-    type,
-    payload
-  });
-  return result;
-}
+const worker$ = fromWorkerMessageEvent(worker)
+const postMessage = createMessenger(worker, worker$)
 
 const tailwindcss: Tailwindcss = {
   async setTailwindConfig(tailwindConfig) {
