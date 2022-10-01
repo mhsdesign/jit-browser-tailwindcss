@@ -170,7 +170,7 @@ see `examples/*`
 
 
 ## Use cases
-this plugin was developed to make dynamic html content elements from a CMS usable with tailwind classes. So one should already have a tailwind build and css file at hand - any further css can then be generated via this package. To have the least amount of css duplication, the generated css of this package doesn't include normalize css. For this use case, this package is best used without the `@base` include:
+this plugin was developed to make dynamic html content elements from a CMS usable with tailwind classes. In that case one should already have a tailwind build and css file at hand - any further css can then be generated via this package. To have the least amount of css duplication, one should disable the normalize css and also use it without the `@base` include:
 
 ```js
 const css = await window.browserJitGenerateTailwindcss(`
