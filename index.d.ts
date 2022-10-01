@@ -1,5 +1,5 @@
 import { AcceptedPlugin } from 'postcss';
-import { TailwindConfig } from 'tailwindcss/tailwindconfig.faketype';
+import { Config } from 'tailwindcss';
 
 /**
  * The entry point to retrieve 'tailwindcss'
@@ -87,8 +87,6 @@ export interface Content {
   extension?: string;
 }
 
-export { TailwindConfig };
-
 /**
  * Client side api to generate css via tailwind jit in the browser
  * 
@@ -99,3 +97,18 @@ declare function jitBrowserTailwindcss(tailwindMainCss: string, jitContent: stri
 export { jitBrowserTailwindcss };
 
 export default jitBrowserTailwindcss;
+
+// This way we Omit `content`, somehow, Omit<> doesnt work.
+export interface TailwindConfig {
+  important?: Config['important'];
+  prefix?: Config['prefix'];
+  separator?: Config['separator'];
+  safelist?: Config['safelist'];
+  presets?: Config['presets'];
+  future?: Config['future'];
+  experimental?: Config['experimental'];
+  darkMode?: Config['darkMode'];
+  theme?: Config['theme'];
+  corePlugins?: Config['corePlugins'];
+  plugins?: Config['plugins'];
+}

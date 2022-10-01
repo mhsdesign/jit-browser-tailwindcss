@@ -59,17 +59,17 @@ const pkg = JSON.parse(await readFile(new URL('package.json', import.meta.url)))
         );
 
         // minify and include the preflight.css in the javascript
-        onLoad({ filter: /preflight.css$/ }, async ({ path }) => {
+        onLoad({ filter: /tailwindcss\/src\/css\/preflight\.css$/ }, async ({ path }) => {
           const result = await build({
             entryPoints: [path],
             minify: true,
+            logLevel: "silent",
             write: false
           })
           return { contents: result.outputFiles[0].text, loader: "text" };
         });
 
-        // None of our dependencies use side effects, but many packages don’t explicitly define
-        // this.
+        // declares all dependencies as side-effect free
         // currently no effect, disabled for faster build.
         // onResolve({ filter: /.*/, namespace: "file" }, async ({ path, ...options }) => {
         //   const result = await resolve(path, { ...options, namespace: "noRecurse"})
@@ -89,28 +89,28 @@ const pkg = JSON.parse(await readFile(new URL('package.json', import.meta.url)))
   ],
 }
 
+// MODULE
 build({
-  entryPoints: ['src/index.ts'],
+  entryPoints: {'module.esm': 'builds/module.ts'},
   bundle: true,
   external: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
     // We only want to include tailwindcss as an external dependency for its types.
     (name) => name !== 'tailwindcss',
   ),
   logLevel: 'info',
-  outdir: '.',
+  outdir: 'dist',
   sourcemap: true,
   format: 'esm',
-  // loader: { '.css': 'copy' },
-  // assetNames: '[name]',
   ...sharedConfig
 });
 
+// CDN
 build({
-  entryPoints: {'dist/index.min': 'src/index.iife.js'},
+  entryPoints: {'cdn.min': 'builds/cdn.js'},
   bundle: true,
   minify: true,
   logLevel: 'info',
-  outdir: '.',
   format: 'iife',
+  outdir: "dist",
   ...sharedConfig
 });
