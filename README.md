@@ -22,8 +22,8 @@ with tailwind Version 3.1.8
 
 ### Current  implementation
 
-This library is inspired/extracted from [monaco-tailwindcss](https://github.com/remcohaszing/monaco-tailwindcss)
-[core code example](https://github.com/remcohaszing/monaco-tailwindcss/blob/main/src/tailwindcss.worker.ts#L176)
+This library is inspired/extracted from the library [monaco-tailwindcss](https://github.com/remcohaszing/monaco-tailwindcss)
+see [core code link](https://github.com/remcohaszing/monaco-tailwindcss/blob/main/src/tailwindcss.worker.ts#L176)
 
 As you might see in the code [core code example](https://github.com/mhsdesign/jit-browser-tailwindcss/blob/d3b726e7122ff1d296ae50db17030a1962be36c8/src/index.ts#L17-L34) we uses tailwind internals to create a postcss plugin via `createTailwindcssPlugin`. This is not api but works for now ;) And produces highly optimized bundle sizes.
 
@@ -40,17 +40,11 @@ Also mocking `fs.readFileSync` had to be done in some postcss source files and t
 
 See packages which are implemented like this:
 
-- [@mhsdesign/jit-browser-tailwindcss:@legacy](https://github.com/mhsdesign/jit-browser-tailwindcss/tree/legacy) 501kB (resource)
-<br>
-[core code example](https://github.com/mhsdesign/jit-browser-tailwindcss/blob/3604924a3d2245b64ee359edc5f19b7106943a2a/src/jitBrowserTailwindcss.js#L23-L27) 
+- [@mhsdesign/jit-browser-tailwindcss:@legacy](https://github.com/mhsdesign/jit-browser-tailwindcss/tree/legacy) 501kB (resource) - [core code link](https://github.com/mhsdesign/jit-browser-tailwindcss/blob/3604924a3d2245b64ee359edc5f19b7106943a2a/src/jitBrowserTailwindcss.js#L23-L27) 
 
-- [beyondcode/tailwindcss-jit-cdn](https://github.com/beyondcode/tailwindcss-jit-cdn) 778kB (resource)
-<br>
-[core code example](https://github.com/beyondcode/tailwindcss-jit-cdn/blob/main/src/observer.js#L40-L52)
+- [beyondcode/tailwindcss-jit-cdn](https://github.com/beyondcode/tailwindcss-jit-cdn) 778kB (resource) - [core code link](https://github.com/beyondcode/tailwindcss-jit-cdn/blob/main/src/observer.js#L40-L52)
 
-- [tailwindlabs/play.tailwindcss.com](https://github.com/tailwindlabs/play.tailwindcss.com/)
-<br>
-[core code example](https://github.com/tailwindlabs/play.tailwindcss.com/blob/01c39f107a7c514b4a84ec1385926748ae5a0ef0/src/workers/processCss.js#L238-L249)
+- [tailwindlabs/play.tailwindcss.com](https://github.com/tailwindlabs/play.tailwindcss.com/) - [core code link](https://github.com/tailwindlabs/play.tailwindcss.com/blob/01c39f107a7c514b4a84ec1385926748ae5a0ef0/src/workers/processCss.js#L238-L249)
 
 The advantage here being that it uses the official API and doesnt rely much on internals.
 
