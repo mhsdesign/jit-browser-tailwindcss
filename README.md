@@ -172,10 +172,17 @@ see `examples/*`
 ## Use cases
 this plugin was developed to make dynamic html content elements from a CMS usable with tailwind classes. In that case one should already have a tailwind build and css file at hand - any further css can then be generated via this package. To have the least amount of css duplication, one should disable the normalize css and also use it without the `@base` include:
 
-```js
-const css = await window.browserJitGenerateTailwindcss(`
-    // remove this line: @tailwind base;
+```ts
+const tailwind = createTailwindcss({
+    tailwindConfig: {
+        // disable normalize css
+        corePlugins: { preflight: false }
+    }
+})
+
+const css = await tailwind.generateStylesFromContent(`
+    /* without the "@tailwind base;" */
     @tailwind components;
     @tailwind utilities;
-`, content)
+`, [htmlContent])
 ```
