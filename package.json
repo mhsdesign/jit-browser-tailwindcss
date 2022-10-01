@@ -1,5 +1,5 @@
 {
-  "name": "jit-browser-tailwindcss",
+  "name": "@mhsdesign/jit-browser-tailwindcss",
   "version": "0.2.0",
   "description": "Jit Browser Tailwindcss",
   "workspaces": [
