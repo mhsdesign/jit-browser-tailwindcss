@@ -1,8 +1,10 @@
 {
   "name": "jit-browser-tailwindcss",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Jit Browser Tailwindcss",
-  "workspaces": ["examples/*"],
+  "workspaces": [
+    "examples/*"
+  ],
   "module": "dist/module.esm.js",
   "unpkg": "dist/cdn.min.js",
   "files": [
