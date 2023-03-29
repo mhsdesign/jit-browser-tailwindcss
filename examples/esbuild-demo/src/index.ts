@@ -1,5 +1,4 @@
 import { TailwindConfig, createTailwindcss } from 'jit-browser-tailwindcss';
-// import lineClamp from '@tailwindcss/line-clamp';
 // import typography from '@tailwindcss/typography';
 
 async function init() {
@@ -12,7 +11,7 @@ async function init() {
         },
       },
     },
-    // plugins: [lineClamp, typography]
+    // plugins: [typography]
   };
 
   const tailwindCss = createTailwindcss({ tailwindConfig });
