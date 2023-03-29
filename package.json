@@ -1,6 +1,6 @@
 {
   "name": "@mhsdesign/jit-browser-tailwindcss",
-  "version": "0.2.4",
+  "version": "0.2.2",
   "description": "Jit Browser Tailwindcss",
   "workspaces": [
     "examples/*"
@@ -31,8 +31,8 @@
   },
   "dependencies": {
     "color-name": "^1.0.0",
-    "dlv": "^1.0.0",
     "didyoumean": "^1.0.0",
+    "dlv": "^1.0.0",
     "postcss": "^8.0.0",
     "postcss-js": "^4.0.0",
     "postcss-nested": "^5.0.0",

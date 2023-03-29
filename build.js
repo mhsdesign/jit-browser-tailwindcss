@@ -4,12 +4,14 @@ import { fileURLToPath } from 'url';
 import { build } from 'esbuild';
 
 const pkg = JSON.parse(await readFile(new URL('package.json', import.meta.url)));
+const externalDependenciesHack = ['@tailwindcss/oxide'];
 
 /**
  * @type {import("esbuild").BuildOptions}
  */
  const sharedConfig = {
   define: {
+    'process.env.OXIDE': 'undefined',
     'process.env.DEBUG': 'undefined',
     'process.env.JEST_WORKER_ID': '1',
     __dirname: '"/"',
@@ -93,10 +95,10 @@ const pkg = JSON.parse(await readFile(new URL('package.json', import.meta.url)))
 build({
   entryPoints: {'module.esm': 'builds/module.ts'},
   bundle: true,
-  external: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
+  external: [...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
     // We only want to include tailwindcss as an external dependency for its types.
     (name) => name !== 'tailwindcss',
-  ),
+  ), ...externalDependenciesHack],
   logLevel: 'info',
   outdir: 'dist',
   sourcemap: true,
@@ -107,6 +109,7 @@ build({
 // CDN
 build({
   entryPoints: {'cdn.min': 'builds/cdn.js'},
+  external: externalDependenciesHack,
   bundle: true,
   minify: true,
   logLevel: 'info',
