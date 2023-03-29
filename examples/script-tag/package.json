@@ -1,0 +1,12 @@
+{
+  "name": "script-tag",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "esbuild index.html ../../dist/cdn.min.js --loader:.html=copy --loader:.js=copy --outdir=dist --entry-names=[name] --servedir=dist"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.0"
+  }
+}

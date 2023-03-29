@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Demo Dynamic Tailwind</title>
     <style id="tailwind"></style>
-    <script src="../../dist/cdn.min.js"></script>
+    <!-- <script src="../../dist/cdn.min.js"></script> -->
 </head>
 <body>
 
@@ -38,7 +38,7 @@
                 return
             }
 
-            //await import('../../dist/cdn.min.js')
+            await import('./cdn.min.js')
 
             const content = Array.from(contentElements).reduce((carry, el) => carry + el.outerHTML, '')
 

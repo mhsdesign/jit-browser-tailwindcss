@@ -40,7 +40,7 @@ Also mocking `fs.readFileSync` had to be done in some postcss source files and t
 
 See packages which are implemented like this:
 
-- [@mhsdesign/jit-browser-tailwindcss:@legacy](https://github.com/mhsdesign/jit-browser-tailwindcss/tree/legacy) 501kB (resource) - [core code link](https://github.com/mhsdesign/jit-browser-tailwindcss/blob/3604924a3d2245b64ee359edc5f19b7106943a2a/src/jitBrowserTailwindcss.js#L23-L27) 
+- [@mhsdesign/jit-browser-tailwindcss:@legacy](https://github.com/mhsdesign/jit-browser-tailwindcss/tree/legacy) 501kB (resource) - [core code link](https://github.com/mhsdesign/jit-browser-tailwindcss/blob/3604924a3d2245b64ee359edc5f19b7106943a2a/src/jitBrowserTailwindcss.js#L23-L27)
 
 - [beyondcode/tailwindcss-jit-cdn](https://github.com/beyondcode/tailwindcss-jit-cdn) 778kB (resource) - [core code link](https://github.com/beyondcode/tailwindcss-jit-cdn/blob/main/src/observer.js#L40-L52)
 
@@ -185,4 +185,19 @@ const css = await tailwind.generateStylesFromContent(`
     @tailwind components;
     @tailwind utilities;
 `, [htmlContent])
+```
+
+## Development
+
+prepack the package (happens automatically on publish)
+```sh
+npm run prepack
+```
+
+test each example (will be served with esbuild)
+
+```sh
+npm run example1
+npm run example2
+npm run example3
 ```

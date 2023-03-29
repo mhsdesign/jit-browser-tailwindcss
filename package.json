@@ -14,7 +14,9 @@
   "type": "module",
   "scripts": {
     "prepack": "node build.js",
-    "start": "npm --workspace esbuild-demo start"
+    "example1": "npm --workspace esbuild-demo start",
+    "example2": "npm --workspace esbuild-demo-worker start",
+    "example3": "npm --workspace script-tag start"
   },
   "repository": {
     "type": "git",

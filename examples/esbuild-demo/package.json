@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./dist && node build.js"
+    "start": "esbuild src/index.ts src/index.html --minify --bundle --format=iife --outdir=dist --loader:.html=copy --servedir=dist"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.9",
