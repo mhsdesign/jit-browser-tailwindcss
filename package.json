@@ -13,7 +13,7 @@
   ],
   "type": "module",
   "scripts": {
-    "prepack": "node build.js",
+    "build": "node build.js",
     "example1": "npm --workspace esbuild-demo start",
     "example2": "npm --workspace esbuild-demo-worker start",
     "example3": "npm --workspace script-tag start",

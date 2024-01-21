@@ -189,9 +189,9 @@ const css = await tailwind.generateStylesFromContent(`
 
 ## Development
 
-prepack the package (happens automatically on publish)
+build the package
 ```sh
-npm run prepack
+npm run build
 ```
 
 test each example (will be served with esbuild)
