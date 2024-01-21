@@ -14,6 +14,7 @@ const externalDependenciesHack = ['@tailwindcss/oxide'];
     'process.env.OXIDE': 'undefined',
     'process.env.DEBUG': 'undefined',
     'process.env.JEST_WORKER_ID': '1',
+    '__OXIDE__': 'false',
     __dirname: '"/"',
   },
   plugins: [
