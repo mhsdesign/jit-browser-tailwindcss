@@ -1,0 +1,13 @@
+{
+  "name": "unit-tests",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
+  },
+  "dependencies": {
+    "@mhsdesign/jit-browser-tailwindcss": "file:../..",
+    "jest": "^29.0.0"
+  }
+}

@@ -7,7 +7,6 @@
     "start": "rm -rf ./dist && node build.js"
   },
   "dependencies": {
-    "jit-browser-tailwindcss": "file:../..",
     "esbuild": "^0.15.0"
   }
 }
