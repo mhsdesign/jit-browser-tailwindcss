@@ -93,7 +93,7 @@ const externalDependenciesHack = ['@tailwindcss/oxide'];
 }
 
 // MODULE
-build({
+await build({
   entryPoints: {'module.esm': 'builds/module.ts'},
   bundle: true,
   external: [...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
@@ -108,7 +108,7 @@ build({
 });
 
 // CDN
-build({
+await build({
   entryPoints: {'cdn.min': 'builds/cdn.js'},
   external: externalDependenciesHack,
   bundle: true,
