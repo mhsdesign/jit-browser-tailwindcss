@@ -107,6 +107,21 @@ await build({
   ...sharedConfig
 });
 
+// CommonJS
+await build({
+  entryPoints: {'main': 'builds/module.ts'},
+  bundle: true,
+  external: [...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
+    // We only want to include tailwindcss as an external dependency for its types.
+    (name) => name !== 'tailwindcss',
+  ), ...externalDependenciesHack],
+  logLevel: 'info',
+  outdir: 'dist',
+  sourcemap: true,
+  format: 'cjs',
+  ...sharedConfig
+});
+
 // CDN
 await build({
   entryPoints: {'cdn.min': 'builds/cdn.js'},
