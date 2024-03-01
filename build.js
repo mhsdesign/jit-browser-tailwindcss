@@ -93,7 +93,7 @@ const externalDependenciesHack = ['@tailwindcss/oxide'];
 }
 
 // MODULE
-build({
+await build({
   entryPoints: {'module.esm': 'builds/module.ts'},
   bundle: true,
   external: [...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
@@ -107,8 +107,23 @@ build({
   ...sharedConfig
 });
 
+// CommonJS
+await build({
+  entryPoints: {'main': 'builds/module.ts'},
+  bundle: true,
+  external: [...Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies }).filter(
+    // We only want to include tailwindcss as an external dependency for its types.
+    (name) => name !== 'tailwindcss',
+  ), ...externalDependenciesHack],
+  logLevel: 'info',
+  outdir: 'dist',
+  sourcemap: true,
+  format: 'cjs',
+  ...sharedConfig
+});
+
 // CDN
-build({
+await build({
   entryPoints: {'cdn.min': 'builds/cdn.js'},
   external: externalDependenciesHack,
   bundle: true,
