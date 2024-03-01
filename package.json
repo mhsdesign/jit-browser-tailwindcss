@@ -5,7 +5,12 @@
     "examples/*",
     "tests/*"
   ],
-  "exports": "./dist/module.esm.js",
+  "exports": {
+    ".": {
+      "default": "./dist/module.esm.js",
+      "types": "./index.d.ts"
+    }
+  },
   "module": "dist/module.esm.js",
   "unpkg": "dist/cdn.min.js",
   "main": "dist/main.js",
