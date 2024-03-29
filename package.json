@@ -6,6 +6,7 @@
     "tests/*"
   ],
   "module": "dist/module.esm.js",
+  "main": "dist/module.esm.js",
   "unpkg": "dist/cdn.min.js",
   "files": [
     "index.d.ts",
